@@ -130,14 +130,14 @@ namespace tc::wfile
    bool IsReadable(const std::wstring &file)
    {
       const auto atts = GetFileAttributes(file);
-      return (atts != INVALID_FILE_ATTRIBUTES) && !(atts & FILE_WRITE_ATTRIBUTES);
+      return atts != INVALID_FILE_ATTRIBUTES;
    }
 
    // Return 1 if file is writeable
    bool IsWriteable(const std::wstring &file)
    {
       const auto atts = GetFileAttributes(file);
-      return (atts != INVALID_FILE_ATTRIBUTES) && (atts & FILE_WRITE_ATTRIBUTES);
+      return (atts != INVALID_FILE_ATTRIBUTES) && !(atts & FILE_ATTRIBUTE_READONLY);
    }
 
    // Return 1 if file is executable

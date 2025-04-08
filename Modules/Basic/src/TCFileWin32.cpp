@@ -131,14 +131,14 @@ namespace tc
    bool file::IsReadable(const std::string &file)
    {
       const auto atts = GetFileAttributes(file);
-      return (atts != INVALID_FILE_ATTRIBUTES) && !(atts & FILE_WRITE_ATTRIBUTES);
+      return atts != INVALID_FILE_ATTRIBUTES;
    }
 
    // Return 1 if file is writeable
    bool file::IsWriteable(const std::string &file)
    {
       const auto atts = GetFileAttributes(file);
-      return (atts != INVALID_FILE_ATTRIBUTES) && (atts & FILE_WRITE_ATTRIBUTES);
+      return (atts != INVALID_FILE_ATTRIBUTES) && !(atts & FILE_ATTRIBUTE_READONLY);
    }
 
    // Return 1 if file is executable
