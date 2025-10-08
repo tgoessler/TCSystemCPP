@@ -79,9 +79,9 @@ void StreamBase::SetStatus(Error err) const
    if (m_display_error_messages)
    {
       DisplayErrorMessage();
-	  if (GetStatus() != Error::NONE && system::GetLastError() != 0)
+	   if (GetStatus() != Error::NONE && system::GetLastError() != 0)
       {
-         TCERRORS("TCBASE", system::GetLastErrorMessage().c_str());
+         TCERRORS("TCBASE", static_cast<int>(err) << ", " << system::GetLastErrorMessage().c_str());
       }
    }
 }

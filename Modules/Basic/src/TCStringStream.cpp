@@ -87,10 +87,10 @@ namespace tc
 
          if (m_string_position < m_string.size())
          {
-            const uint64_t num_bytes_to_read = util::Min(nBytes, uint64_t(m_string.size() - m_string_position));
-            std::memcpy(bytes, &m_string[m_string_position], std::string::size_type(num_bytes_to_read));
+            const uint64_t num_bytes_to_read = util::Min(nBytes, static_cast<uint64_t>(m_string.size() - m_string_position));
+            std::memcpy(bytes, &m_string[m_string_position], static_cast<std::string::size_type>(num_bytes_to_read));
 
-            m_string_position += std::string::size_type(num_bytes_to_read);
+            m_string_position += static_cast<std::string::size_type>(num_bytes_to_read);
          }
 
          return nBytes;
@@ -116,10 +116,10 @@ namespace tc
             return 0;
          }
 
-         m_string.replace(m_string_position, std::string::size_type(nBytes), 
-            std::string::const_pointer(bytes), std::string::size_type(nBytes));
+         m_string.replace(m_string_position, static_cast<std::string::size_type>(nBytes), 
+            static_cast<std::string::const_pointer>(bytes), static_cast<std::string::size_type>(nBytes));
 
-         m_string_position += std::string::size_type(nBytes);
+         m_string_position += static_cast<std::string::size_type>(nBytes);
 
          return nBytes;
       }
@@ -129,28 +129,28 @@ namespace tc
          switch(pos_mode)
          {
          case Position::SET:
-            m_string_position = std::string::size_type(pos);
+            m_string_position = static_cast<std::string::size_type>(pos);
             break;
 
          case Position::CURRENT:
             if (pos > 0)
             {
-               m_string_position += std::string::size_type(pos);
+               m_string_position += static_cast<std::string::size_type>(pos);
             }
             else
             {
-               m_string_position -= std::string::size_type(util::Abs(pos));
+               m_string_position -= static_cast<std::string::size_type>(util::Abs(pos));
             }
             break;
 
          case Position::END:
             if (pos > 0)
             {
-               m_string_position = m_string.size() + std::string::size_type(pos);
+               m_string_position = m_string.size() + static_cast<std::string::size_type>(pos);
             }
             else
             {
-               m_string_position = m_string.size() - std::string::size_type(util::Abs(pos));
+               m_string_position = m_string.size() - static_cast<std::string::size_type>(util::Abs(pos));
             }
             break;
          }

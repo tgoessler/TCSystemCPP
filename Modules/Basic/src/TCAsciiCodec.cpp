@@ -248,12 +248,12 @@ namespace tc
 
       uint64_t AsciiCodec::Encode(int8_t val, Stream& stream)
       {
-         return Encode(int16_t(val), stream);
+         return Encode(static_cast<int16_t>(val), stream);
       }
 
       uint64_t AsciiCodec::Encode(uint8_t val, Stream& stream)
       {
-         return Encode(uint16_t(val), stream);
+         return Encode(static_cast<uint16_t>(val), stream);
       }
 
       uint64_t AsciiCodec::Encode(int16_t val, Stream& stream)

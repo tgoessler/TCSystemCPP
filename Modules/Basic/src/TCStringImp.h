@@ -261,7 +261,7 @@ namespace tc
                break;
             }
          }
-         return (int32_t)c1 - (int32_t)c2;
+         return static_cast<int32_t>(c1) - static_cast<int32_t>(c2);
       }
 
 
@@ -291,7 +291,7 @@ namespace tc
                break;
             }
          }
-         return (int32_t)c1 - (int32_t)c2;
+         return static_cast<int32_t>(c1) - static_cast<int32_t>(c2);
       }
       static STRING_CLASS TrimmSpaces(const STRING_CLASS& text_in)
       {

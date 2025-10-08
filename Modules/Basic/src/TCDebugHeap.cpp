@@ -208,14 +208,14 @@ namespace tc
          }
          else if (str_diff == 0)
          {
-            const int32_t line_diff = (int32_t)entry1->m_line - (int32_t)entry2->m_line;
+            const int32_t line_diff = static_cast<int32_t>(entry1->m_line) - static_cast<int32_t>(entry2->m_line);
             if (line_diff > 0)
             {
                return 2;
             }
             else if (line_diff == 0)
             {
-               const int32_t thread_diff = (int32_t)entry1->m_thread - (int32_t)entry2->m_thread;
+               const int32_t thread_diff = static_cast<int32_t>(entry1->m_thread) - static_cast<int32_t>(entry2->m_thread);
                if (thread_diff >= 0)
                {
                   return 3;

@@ -168,7 +168,7 @@ namespace tc
             uint32_t nBytes;
             const uint64_t len = Decode(stream, nBytes);
 
-            char* data = new char[std::size_t(nBytes)+1];
+            char* data = new char[static_cast<std::size_t>(nBytes)+1];
             if (stream.ReadBytes(nBytes, data) != nBytes)
             {
                delete []data;
@@ -277,7 +277,7 @@ namespace tc
 
          uint64_t Encode(const std::string& val, Stream& stream)
          {
-            const uint32_t nBytes = uint32_t(val.length());
+            const uint32_t nBytes = static_cast<uint32_t>(val.length());
             const uint64_t len = Encode(nBytes, stream);
 
             return stream.WriteBytes(nBytes, val.c_str()) + len;
@@ -291,7 +291,7 @@ namespace tc
 
          uint64_t Encode(const char *val, Stream& stream)
          {
-            const uint32_t nBytes = uint32_t(std::strlen(val));
+            const uint32_t nBytes = static_cast<uint32_t>(std::strlen(val));
             const uint64_t len = Encode(nBytes, stream);
 
             return stream.WriteBytes(nBytes, val) + len;

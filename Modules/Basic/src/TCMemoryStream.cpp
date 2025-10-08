@@ -82,8 +82,8 @@ namespace tc
          {
             const ByteVector::pointer copy_data = static_cast<ByteVector::pointer>(bytes);
             std::copy(m_memory.begin()+m_memory_position, 
-                      m_memory.begin()+ByteVector::size_type(m_memory_position+num_bytes), copy_data);
-            m_memory_position += ByteVector::size_type(num_bytes);
+                      m_memory.begin()+static_cast<ByteVector::size_type>(m_memory_position + num_bytes), copy_data);
+            m_memory_position += static_cast<ByteVector::size_type>(num_bytes);
 
             return num_bytes;
          }
@@ -118,7 +118,7 @@ namespace tc
          }
          else if (m_memory.size() < m_memory_position+num_bytes)
          {
-             m_memory.resize(ByteVector::size_type(m_memory_position+num_bytes));
+             m_memory.resize(static_cast<ByteVector::size_type>(m_memory_position + num_bytes));
              std::copy(data_to_write, data_to_write+num_bytes, m_memory.begin()+m_memory_position);
          }
          else
@@ -126,14 +126,14 @@ namespace tc
              std::copy(data_to_write, data_to_write+num_bytes, m_memory.begin()+m_memory_position);
          }
 
-         m_memory_position += ByteVector::size_type(num_bytes);
+         m_memory_position += static_cast<ByteVector::size_type>(num_bytes);
 
          return num_bytes;
       }
 
       bool MemoryStream::SetPosition(int64_t pos, Position pos_mode)
       {
-         if (uint64_t(util::Abs(pos)) > std::numeric_limits<ByteVector::size_type>::max())
+         if (static_cast<uint64_t>(util::Abs(pos)) > std::numeric_limits<ByteVector::size_type>::max())
          {
              return false;
          }
@@ -141,28 +141,28 @@ namespace tc
          switch(pos_mode)
          {
          case Position::SET:
-            m_memory_position = ByteVector::size_type(pos);
+            m_memory_position = static_cast<ByteVector::size_type>(pos);
             break;
 
          case Position::CURRENT:
             if (pos > 0)
             {
-               m_memory_position += ByteVector::size_type(pos);
+               m_memory_position += static_cast<ByteVector::size_type>(pos);
             }
             else
             {
-               m_memory_position -= ByteVector::size_type(util::Abs(pos));
+               m_memory_position -= static_cast<ByteVector::size_type>(util::Abs(pos));
             }
             break;
 
          case Position::END:
             if (pos > 0)
             {
-               m_memory_position = m_memory.size() + ByteVector::size_type(pos);
+               m_memory_position = m_memory.size() + static_cast<ByteVector::size_type>(pos);
             }
             else
             {
-               m_memory_position = m_memory.size() - ByteVector::size_type(util::Abs(pos));
+               m_memory_position = m_memory.size() - static_cast<ByteVector::size_type>(util::Abs(pos));
             }
             break;
          }

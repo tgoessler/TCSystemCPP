@@ -125,14 +125,14 @@ namespace tc
          ::QueryPerformanceFrequency(&frequence);
 
          s_init      = true;
-         s_frequence = frequence.QuadPart/double(ONE_SECOND_AS_NANO_SECONDS);
+         s_frequence = frequence.QuadPart/static_cast<double>(ONE_SECOND_AS_NANO_SECONDS);
       }
 
       if (s_frequence > 0)
       {
          LARGE_INTEGER ticks;
          ::QueryPerformanceCounter(&ticks);
-         const uint64_t mticks = uint64_t(ticks.QuadPart/s_frequence);
+         const uint64_t mticks = static_cast<uint64_t>(ticks.QuadPart / s_frequence);
          time = Time::FromNanoSeconds(mticks);
       }
       else

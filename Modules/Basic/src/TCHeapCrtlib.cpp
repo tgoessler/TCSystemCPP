@@ -110,7 +110,7 @@ namespace tc
       Header* header = static_cast<Header*>(memory);
       --header;
 
-      const uint32_t mem_size = util::Min(size, header->m_allocation_size - uint32_t(sizeof(Header)));
+      const uint32_t mem_size = util::Min(size, header->m_allocation_size - static_cast<uint32_t>(sizeof(Header)));
       std::memcpy(new_memory, memory, mem_size);
 
       Free(memory);

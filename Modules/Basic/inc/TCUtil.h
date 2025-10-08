@@ -218,7 +218,7 @@ namespace tc
       template <class T>
       void SwapBytes(T &val)
       {
-         uint8_t *buffer = (uint8_t*)&val;
+         uint8_t *buffer = static_cast<uint8_t*>(&val);
          for (uint32_t i = 0; i<sizeof(val)/2; i++)
          {
             const uint8_t b = buffer[i];

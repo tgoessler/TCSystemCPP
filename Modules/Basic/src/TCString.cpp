@@ -170,12 +170,12 @@ namespace tc
 
    int8_t string::ToSint8(const std::string& val)
    {
-      return int8_t(ToSint16(val));
+      return static_cast<int8_t>(ToSint16(val));
    }
 
    uint8_t string::ToUint8(const std::string& val)
    {
-      return uint8_t(ToUint16(val));
+      return static_cast<uint8_t>(ToUint16(val));
    }
 
    int16_t string::ToSint16(const std::string& val)

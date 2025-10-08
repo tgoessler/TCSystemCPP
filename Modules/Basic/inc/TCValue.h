@@ -67,7 +67,7 @@ namespace tc
       */
       Value()
       {
-         m_val = (T)0;
+         m_val = static_cast<T>(0);
       }
       /**
       * copy constructor
@@ -97,7 +97,7 @@ namespace tc
       /** @return bytes in little endian non const */
       uint8_t* GetBytes() { return reinterpret_cast<uint8_t*>(&m_val); }
       /** @return number of bytes of value */
-      uint32_t GetNumBytes() const { return (uint32_t)sizeof(T); }
+      uint32_t GetNumBytes() const { return static_cast<uint32_t>(sizeof(T)); }
 
       /** assignment operator for setting values */
       Value<T>& operator=(const T &a)
@@ -125,7 +125,7 @@ namespace tc
        */
       ByteOrderedValue()
       {
-         m_val = (T)0;
+         m_val = static_cast<T>(0);
          SwapBytes(m_val);
       }
       /**
@@ -160,7 +160,7 @@ namespace tc
       /** @return bytes in little endian non const */
       uint8_t* GetBytes() { return reinterpret_cast<uint8_t*>(&m_val); }
       /** @return number of bytes of value */
-      uint32_t GetNumBytes() const { return (uint32_t)sizeof(T); }
+      uint32_t GetNumBytes() const { return static_cast<uint32_t>(sizeof(T)); }
       /** assign the value because of bytes */
       void SetBytes(const uint8_t* bytes) {m_val = *reinterpret_cast<const T*>(bytes);}
       /** assignment operator for setting values */

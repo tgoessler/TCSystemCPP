@@ -150,7 +150,7 @@ namespace tc
          while(read_bytes < nBytes)
          {
             const std::size_t num = std::fread(static_cast<uint8_t*>(bytes)+read_bytes, 1, 
-                                               std::size_t(nBytes-read_bytes), m_stream_pointer);
+                                               static_cast<std::size_t>(nBytes - read_bytes), m_stream_pointer);
             if (num <= 0)
             {
                if (std::feof(m_stream_pointer))
@@ -193,7 +193,7 @@ namespace tc
          while(wrote_bytes < nBytes)
          {
             const std::size_t num = std::fwrite(static_cast<const uint8_t*>(bytes)+wrote_bytes, 1, 
-                                                std::size_t(nBytes-wrote_bytes), m_stream_pointer);
+                                                static_cast<std::size_t>(nBytes - wrote_bytes), m_stream_pointer);
             if (num <= 0)
             {
                 SetStatus(Error::WRITE_TO_STREAM);
@@ -231,13 +231,13 @@ namespace tc
          switch(pos_mode)
          {
          case Position::SET:
-            return std::fseek(m_stream_pointer, long(pos), SEEK_SET) == 0;
+            return std::fseek(m_stream_pointer, static_cast<long>(pos), SEEK_SET) == 0;
 
          case Position::CURRENT:
-            return std::fseek(m_stream_pointer, long(pos), SEEK_CUR) == 0;
+            return std::fseek(m_stream_pointer, static_cast<long>(pos), SEEK_CUR) == 0;
 
          case Position::END:
-            return std::fseek(m_stream_pointer, long(pos), SEEK_END) == 0;
+            return std::fseek(m_stream_pointer, static_cast<long>(pos), SEEK_END) == 0;
          }
 
          return false;
